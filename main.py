@@ -48,7 +48,7 @@ app = FastAPI(
 
 ALLOWED_ORIGINS = os.getenv(
     "ALLOWED_ORIGINS",
-    "https://kennyy.me,http://localhost:3456,http://localhost:5500,http://127.0.0.1:5500",
+    "https://kennyy.me,https://snip.kennyy.me,http://localhost:3456,http://localhost:5500,http://127.0.0.1:5500,http://localhost:8000,http://localhost:5173",
 ).split(",")
 
 app.add_middleware(
