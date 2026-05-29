@@ -31,7 +31,16 @@ BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Create tables on startup."""
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print("\n" + "!" * 60)
+        print("DATABASE CONNECTION ERROR:")
+        print(e)
+        print("Make sure you enabled the connection pooler in Supabase")
+        print("and set your DATABASE_URL env variable correctly in Render.")
+        print("!" * 60 + "\n", flush=True)
+        raise e
     yield
 
 
